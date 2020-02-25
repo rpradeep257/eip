@@ -11,31 +11,30 @@ import org.springframework.stereotype.Component;
 
 /**
  * Camel route validating incoming JSON with schema
- *
  */
 
 @Component
 public class JSONValidationRoute extends RouteBuilder {
 
-	@Value("${eip.route.json-validation.start}")
+    @Value("${eip.route.json-validation.start}")
     private String routeStart;
-	
-	@Value("${eip.route.json-validation.end}")
-	private String routeEnd;
+
+    @Value("${eip.route.json-validation.end}")
+    private String routeEnd;
 
     @Override
     public void configure() throws Exception {
 
         RouteDefinition routeDefinition = from(routeStart)
                 .routeId(routeStart);
-        
+
         routeDefinition.onException(JsonValidationException.class)
-                    .log(LoggingLevel.ERROR, "Invalid JSON payload ${body}")
-                    .handled(true)
-                    .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
-                    .setBody().constant("JSON validation failed")
-                    .end();
-        
+                .log(LoggingLevel.ERROR, "Invalid JSON payload ${body}")
+                .handled(true)
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
+                .setBody().constant("JSON validation failed")
+                .end();
+
         routeDefinition
                 .log(LoggingLevel.DEBUG, "Body : ${body}")
                 .convertBodyTo(String.class)

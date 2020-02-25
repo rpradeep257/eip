@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class Config {
-	
-	private static final String CAMEL_SERVLET_NAME = "CamelServlet";
-	private static final String CAMEL_URL_MAPPING = "/services/rest/api/*";
+
+    private static final String CAMEL_SERVLET_NAME = "CamelServlet";
+    private static final String CAMEL_URL_MAPPING = "/services/rest/api/*";
 
     @Bean
     public ServletRegistrationBean camelServletRegistrationBean() {

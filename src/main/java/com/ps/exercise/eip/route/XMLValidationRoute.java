@@ -16,26 +16,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class XMLValidationRoute extends RouteBuilder {
 
-	@Value("${eip.route.xml-validation.start}")
+    @Value("${eip.route.xml-validation.start}")
     private String routeStart;
-	
-	@Value("${eip.route.xml-validation.end}")
-	private String routeEnd;
+
+    @Value("${eip.route.xml-validation.end}")
+    private String routeEnd;
 
     @Override
     public void configure() throws Exception {
 
-    	
+
         RouteDefinition routeDefinition = from(routeStart)
                 .routeId(routeStart);
-        
+
         routeDefinition.onException(SchemaValidationException.class)
-                    .log(LoggingLevel.ERROR, "Invalid XML payload ${body}")
-                    .handled(true)
-                    .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
-                    .setBody().constant("XML validation failed")
-                    .end();
-        
+                .log(LoggingLevel.ERROR, "Invalid XML payload ${body}")
+                .handled(true)
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
+                .setBody().constant("XML validation failed")
+                .end();
+
         routeDefinition.log(LoggingLevel.DEBUG, "Body : ${body}")
                 .to("validator:customer.xsd")
                 .log(LoggingLevel.INFO, "XML validation sucessful")

@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 /**
  * Camel route for processing customer details
- *
  */
 @Component
 public class CustomerRestRoute extends RouteBuilder {
 
     private final String RESOURCE_PATH = "/customers";
-    
+
     @Value("${eip.route.customer-rest.end}")
     private String routeEnd;
 
@@ -24,9 +23,9 @@ public class CustomerRestRoute extends RouteBuilder {
                 .dataFormatProperty("prettyPrint", "true");
 
         rest()
-        	.post(RESOURCE_PATH)
-        		.description("Create a customer")
-        			.route().to(routeEnd).endRest();
-        
+                .post(RESOURCE_PATH)
+                .description("Create a customer")
+                .route().to(routeEnd).endRest();
+
     }
 }

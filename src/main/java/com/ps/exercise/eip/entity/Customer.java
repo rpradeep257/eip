@@ -13,16 +13,16 @@ import lombok.ToString;
 @Data
 @ToString
 public class Customer {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@ToString.Exclude
-	private long id;
-	@Version
-	@ToString.Exclude
-	private int version;
-	private String firstName;
-	private String lastName;
-	private int age;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ToString.Exclude
+    private long id;
+    @Version
+    @ToString.Exclude
+    private int version;
+    private String firstName;
+    private String lastName;
+    private int age;
 
 }

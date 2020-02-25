@@ -19,11 +19,11 @@ import com.ps.exercise.eip.entity.Customer;
 @Component
 public class CustomerProcessingRoute extends RouteBuilder {
 
-	@Value("${eip.route.customer-processing.start}")
+    @Value("${eip.route.customer-processing.start}")
     private String routeStart;
-	
-	@Value("${eip.route.customer-processing.end}")
-	private String routeEnd;
+
+    @Value("${eip.route.customer-processing.end}")
+    private String routeEnd;
 
     @Override
     public void configure() throws Exception {
@@ -32,11 +32,11 @@ public class CustomerProcessingRoute extends RouteBuilder {
                 .routeId(routeStart);
 
         routeDefinition.onException(Exception.class)
-                    .log(LoggingLevel.ERROR, "Customer processing failed ${body}")
-                    .handled(true)
-                    .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
-                    .setBody().constant("Customer processing failed")                    
-                    .end();
+                .log(LoggingLevel.ERROR, "Customer processing failed ${body}")
+                .handled(true)
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(HttpStatus.BAD_REQUEST.value()))
+                .setBody().constant("Customer processing failed")
+                .end();
 
         routeDefinition.unmarshal().jacksonxml(com.ps.exercise.eip.generated.Customer.class)
                 .process(new Processor() {
