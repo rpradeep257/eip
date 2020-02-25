@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="customer">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:integer" name="id" nillable="true" minOccurs="0" maxOccurs="1"/>
+                <xsd:element type="xsd:string" name="firstName" nillable="false" maxOccurs="1"/>
+                <xsd:element type="xsd:string" name="lastName" nillable="false" maxOccurs="1"/>
+                <xsd:element type="xsd:integer" name="age" nillable="false" maxOccurs="1"/>                
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

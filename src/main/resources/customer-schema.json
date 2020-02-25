@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "customer",
+  "type": "object",
+  "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name"
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age should be greater than or equal to 18",
+          "minimum": 18
+        }
+  },
+  "required": [
+    "firstName",
+    "lastName",
+	"age"
+  ]
+}
