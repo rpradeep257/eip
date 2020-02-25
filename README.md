@@ -9,11 +9,11 @@
  
 ## Docker build
 
-`docker build -t camel:latest .`
+`docker build -t eip:latest .`
 
 ## Docker run
 
-`docker run -p8080:8080 camel:latest`
+`docker run -p8080:8080 eip:latest`
 
 ## Sample payload
 
